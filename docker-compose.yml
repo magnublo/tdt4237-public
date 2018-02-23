@@ -1,0 +1,41 @@
+# Docker-compose config
+#
+# To build services run:
+# $> docker-compose rebuilding
+# To start services:
+# $> docker-compose up
+# To stop services:
+# $> docker-compose down
+# To import MySQL
+# $> cat sql.txt | mysql -uroot -pbarePassord --host=0.0.0.0 --port=3306
+# Access Bash inside the container
+# $> docker exec -ti tdt4237public_webapp_1 bash
+
+version: '3'
+services:
+  webapp:
+    build: .
+    image: tdt4237-public
+    expose:
+      - "80"
+      - "443"
+    ports:
+      - "80:80"
+      - "443:443"
+    working_dir: /var/www/html
+    depends_on:
+      - mysql
+    networks:
+      - tdt4237
+  mysql:
+    image: mysql:5.7
+    environment:
+      MYSQL_ROOT_PASSWORD: 'barePassord'
+    expose:
+      - "3306"
+    ports:
+      - "3306:3306"
+    networks:
+      - tdt4237
+networks:
+  tdt4237:
