@@ -1,6 +1,9 @@
 ﻿SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
 
+CREATE DATABASE IF NOT EXISTS inventory;
+
+USE inventory;
 
 CREATE TABLE IF NOT EXISTS `categories` (
   `id` int(11) NOT NULL,
@@ -98,7 +101,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   `id` int(11) NOT NULL,
   `username` varchar(255) NOT NULL,
   `password` varchar(255) NOT NULL,
-  `email` varchar(255) NOT NULL,
+  `email` varchar(255),
   `created_at` varchar(255) NOT NULL,
   `admin` boolean NOT NULL
 ) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
